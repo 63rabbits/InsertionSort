@@ -6,12 +6,19 @@
 //////////////////////////////////////////////////
 typedef enum SORTOption {
     SORT_OPTION_NONE = 0,
+    SORT_OPTION_ORDER = 0x0001,
+    SORT_OPTION_RANGE = 0x0002,
+    SORT_OPTION_PLACE = 0x0004,
+
     SORT_OPTION_ASCENDING_ORDER = 0x0000,
     SORT_OPTION_DESCENDING_ORDER = 0x0001,
-    SORT_OPTION_INPLACE = 0x0000,
-    SORT_OPTION_NOT_INPLACE = 0x0002,
+    
     SORT_OPTION_RANGE_ALL = 0x0000,
-    SORT_OPTION_RANGE_PARTIAL = 0x0004
+    SORT_OPTION_RANGE_PARTIAL = 0x0002,
+    
+    SORT_OPTION_INPLACE = 0x0000,
+    SORT_OPTION_NOT_INPLACE = 0x0004
+    
 } SORT_OPTION_e;
 
 //////////////////////////////////////////////////

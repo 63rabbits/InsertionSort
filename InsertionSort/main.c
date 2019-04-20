@@ -37,7 +37,7 @@ int main(int argc, const char * argv[]) {
 
 void test() {
     int testCount = 10;
-    int numElement = 30;
+    int numElement = 20;
     
     int beginOfPartial = 10;
     int endOfPartial = 15;
@@ -121,7 +121,7 @@ void test() {
                     printf("%2d, ", ((Element_t*)newArray[i])->value);
                     free(newArray[i]);
                 }
-                free(newArray);
+//                free(newArray);
                 printf("\n");
             }
                 break;
@@ -153,7 +153,7 @@ void test() {
                     if (i == endOfPartial) printf("] ");
                     free(newArray[i]);
                 }
-                free(newArray);
+//                free(newArray);
                 printf("\n");
             }
                 // *************************************

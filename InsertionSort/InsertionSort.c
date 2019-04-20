@@ -11,20 +11,20 @@ bool insertionSortSimple(int *array, int length, SORT_OPTION_e option) {
     // Block illegal parameters.
     if (array == NULL) return false;
     if (length <= 0) return false;
-    if ((SORT_OPTION_RANGE_PARTIAL & option) != 0) return false;
-    if ((SORT_OPTION_INPLACE & option) != 0) return false;
+    if ((SORT_OPTION_RANGE & option) != 0) return false;
+    if ((SORT_OPTION_PLACE & option) != 0) return false;
     
     for (int i=1; i<length; i++) {
         int value = array[i];
         int j = i;
-        if (SORT_OPTION_DESCENDING_ORDER & option) {
-            while ((j > 0) && (array[j-1] < value)) {
+        if ((SORT_OPTION_ORDER & option) == SORT_OPTION_ASCENDING_ORDER) {
+            while ((j > 0) && (array[j-1] > value)) {
                 array[j] = array[j-1];
                 j--;
             }
         }
         else {
-            while ((j > 0) && (array[j-1] > value)) {
+            while ((j > 0) && (array[j-1] < value)) {
                 array[j] = array[j-1];
                 j--;
             }
@@ -39,8 +39,8 @@ bool insertionSort(int *array, int length, int leftIndex, int rightIndex, SORT_O
     // Block illegal parameters.
     if (array == NULL) return false;
     if (length <= 0) return false;
-    if ((SORT_OPTION_INPLACE & option) != 0) return false;
-    if (SORT_OPTION_RANGE_PARTIAL & option) {
+    if ((SORT_OPTION_PLACE & option) != 0) return false;
+    if ((SORT_OPTION_RANGE & option) == SORT_OPTION_RANGE_PARTIAL) {
         if ((leftIndex < 0) || (leftIndex >= length)) return false;
         if ((rightIndex < 0) || (leftIndex >= length)) return false;
         if (leftIndex > rightIndex) return false;
@@ -55,14 +55,14 @@ bool insertionSort(int *array, int length, int leftIndex, int rightIndex, SORT_O
     for (int i=leftIndex+1; i<=rightIndex; i++) {
         int value = array[i];
         int j = i;
-        if (SORT_OPTION_DESCENDING_ORDER & option) {
-            while ((j > leftIndex) && (array[j-1] < value)) {
+        if ((SORT_OPTION_ORDER & option) == SORT_OPTION_ASCENDING_ORDER) {
+            while ((j > leftIndex) && (array[j-1] > value)) {
                 array[j] = array[j-1];
                 j--;
             }
         }
         else {
-            while ((j > leftIndex) && (array[j-1] > value)) {
+            while ((j > leftIndex) && (array[j-1] < value)) {
                 array[j] = array[j-1];
                 j--;
             }
@@ -77,7 +77,7 @@ void *insertionSortGeneral(void **array, int length, int (*comp)(void*, void*), 
     // Block illegal parameters.
     if (array == NULL) return NULL;
     if (length <= 0) return false;
-    if (SORT_OPTION_RANGE_PARTIAL & option) {
+    if ((SORT_OPTION_RANGE & option) == SORT_OPTION_RANGE_PARTIAL) {
         if ((leftIndex < 0) || (leftIndex >= length)) return NULL;
         if ((rightIndex < 0) || (leftIndex >= length)) return NULL;
         if (leftIndex > rightIndex) return NULL;
@@ -87,7 +87,7 @@ void *insertionSortGeneral(void **array, int length, int (*comp)(void*, void*), 
         rightIndex = length-1;
     }
     
-    if (SORT_OPTION_INPLACE & option) {
+    if ((SORT_OPTION_INPLACE & option) == SORT_OPTION_INPLACE) {
         // nop
     }
     else {
@@ -103,14 +103,14 @@ void *insertionSortGeneral(void **array, int length, int (*comp)(void*, void*), 
     for (int i=leftIndex+1; i<=rightIndex; i++) {
         int j = i;
         void *element = array[i];
-        if (SORT_OPTION_DESCENDING_ORDER & option) {
-            while ((j > leftIndex) && (comp(array[j-1], element) < 0)) {
+        if ((SORT_OPTION_ORDER & option) == SORT_OPTION_ASCENDING_ORDER) {
+            while ((j > leftIndex) && (comp(array[j-1], element) > 0)) {
                 array[j] = array[j-1];
                 j--;
             }
         }
         else {
-            while ((j > leftIndex) && (comp(array[j-1], element) > 0)) {
+            while ((j > leftIndex) && (comp(array[j-1], element) < 0)) {
                 array[j] = array[j-1];
                 j--;
             }
