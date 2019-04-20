@@ -119,9 +119,8 @@ void test() {
                 }
                 for (int i=0; i<numElement; i++) {
                     printf("%2d, ", ((Element_t*)newArray[i])->value);
-                    free(newArray[i]);
+                    destroyElement(newArray[i]);
                 }
-//                free(newArray);
                 printf("\n");
             }
                 break;
@@ -151,9 +150,8 @@ void test() {
                     if (i == beginOfPartial) printf("[ ");
                     printf("%2d, ", ((Element_t*)newArray[i])->value);
                     if (i == endOfPartial) printf("] ");
-                    free(newArray[i]);
+                    destroyElement(newArray[i]);
                 }
-//                free(newArray);
                 printf("\n");
             }
                 // *************************************
