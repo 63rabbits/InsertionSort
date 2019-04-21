@@ -87,10 +87,7 @@ void *insertionSortGeneral(void **array, int length, int (*comp)(void*, void*), 
         rightIndex = length-1;
     }
     
-    if ((SORT_OPTION_INPLACE & option) == SORT_OPTION_INPLACE) {
-        // nop
-    }
-    else {
+    if ((SORT_OPTION_INPLACE & option) == SORT_OPTION_NOT_INPLACE) {
         // duplicate an array.
         void *temp = malloc(sizeof(void*) * length);
         if (temp == NULL) return NULL;
