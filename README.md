@@ -1,3 +1,3 @@
 # InsertionSort
 
-Time complexity : $$O(n^2)$$
+Time complexity : O(n^2)
